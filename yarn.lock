@@ -31,6 +31,16 @@
     tslib "2.3.1"
     uuid "8.3.2"
 
+"@nestjs/config@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@nestjs/config/-/config-2.0.0.tgz#a8fbec48a2b55488ac50ad5ed4cf2df89d398171"
+  integrity sha512-Hi1k/1S5ogsS5c0OtNm72thiLSngijOaLDFaGI5ZPxNGpF23lctPg6ox3pYIOhXVRX/u+eiUIp71gswH2k8YNw==
+  dependencies:
+    dotenv "16.0.0"
+    dotenv-expand "8.0.2"
+    lodash "4.17.21"
+    uuid "8.3.2"
+
 "@nestjs/core@^8.4.4":
   version "8.4.4"
   resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-8.4.4.tgz#94fd2d63fd77791f616fbecafb79faa2235eeeff"
@@ -178,6 +188,14 @@ chalk@^4.1.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+class-validator@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.13.2.tgz#64b031e9f3f81a1e1dcd04a5d604734608b24143"
+  integrity sha512-yBUcQy07FPlGzUjoLuUfIOXzgynnQPPruyK1Ge2B74k9ROwnle1E+NxLWnUv5OLU8hA/qL5leAE9XnXq3byaBw==
+  dependencies:
+    libphonenumber-js "^1.9.43"
+    validator "^13.7.0"
+
 color-convert@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-2.0.1.tgz#72d3a68d598c9bdb3af2ad1e84f21d896abd4de3"
@@ -221,6 +239,16 @@ diff@^4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.2.tgz#60f3aecb89d5fae520c11aa19efc2bb982aade7d"
   integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
+
+dotenv-expand@8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-8.0.2.tgz#c75c6f695cff061a9ed9a95a520c6cc84b912188"
+  integrity sha512-vKKAk+VOzAWOV/dPIeSYqhgC/TQY+6L6Ibkzfsr8xd1stdBsTuGu9asCOXgbYbBeS+f2Y6lqqEuw7riOA+xEUQ==
+
+dotenv@16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.0.tgz#c619001253be89ebb638d027b609c75c26e47411"
+  integrity sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==
 
 fast-decode-uri-component@^1.0.1:
   version "1.0.1"
@@ -360,6 +388,11 @@ json-schema-traverse@^1.0.0:
   resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-1.0.0.tgz#ae7bcb3656ab77a73ba5c49bf654f38e6b6860e2"
   integrity sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==
 
+libphonenumber-js@^1.9.43:
+  version "1.9.52"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.9.52.tgz#662ea92dcb6761ceb2dc9a8cd036aadd355bc999"
+  integrity sha512-8k83chc+zMj+J/RkaBxi0PpSTAdzHmpqzCMqquSJVRfbZFr8DCp6vPC7ms2PIPGxeqajZLI6CBLW5nLCJCJrYg==
+
 light-my-request@4.9.0, light-my-request@^4.2.0:
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/light-my-request/-/light-my-request-4.9.0.tgz#83559c7ce7e503466113e36f40a1d596a1886626"
@@ -369,6 +402,11 @@ light-my-request@4.9.0, light-my-request@^4.2.0:
     cookie "^0.4.0"
     process-warning "^1.0.0"
     set-cookie-parser "^2.4.1"
+
+lodash@4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 lru-cache@^6.0.0:
   version "6.0.0"
@@ -618,6 +656,11 @@ v8-compile-cache-lib@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/v8-compile-cache-lib/-/v8-compile-cache-lib-3.0.1.tgz#6336e8d71965cb3d35a1bbb7868445a7c05264bf"
   integrity sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==
+
+validator@^13.7.0:
+  version "13.7.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.7.0.tgz#4f9658ba13ba8f3d82ee881d3516489ea85c0857"
+  integrity sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==
 
 vary@^1.1.2:
   version "1.1.2"
