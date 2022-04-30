@@ -8,3 +8,5 @@ postgres
 .env.test
 
 .prettierrc
+
+ormlogs.log

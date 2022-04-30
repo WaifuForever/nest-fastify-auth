@@ -12,7 +12,6 @@ export class AppConfigService extends ValidatedConfigService {
     @IsDefined()
     @IsInt()
     get port(): number {
-        console.log(this.configService.get<string>('app.port'))
         return parseInt(this.configService.get<string>('app.port'), 10);
     }
 }
