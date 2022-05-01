@@ -15,7 +15,7 @@ import {
 import { User } from './interfaces/user.interface';
 import { UserService } from './user.service';
 
-@Controller('Users')
+@Controller('users')
 export class UserController {
     constructor(private _service: UserService) {}
 

@@ -27,7 +27,7 @@ export class UserService {
         const entity = Object.assign(new UserEntity(), attributes);
         const result: User = await this._repository.save(entity);
 
-        return result;
+        return { email: result.email };
     }
 
     async findAllUsers(): Promise<User[]> {
