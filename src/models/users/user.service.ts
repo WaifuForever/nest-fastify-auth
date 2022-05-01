@@ -50,7 +50,7 @@ export class UserService {
         return result;
     }
 
-    async updateById(_id: string, item): Promise<User> {
+    async updateById(id: string, item): Promise<User> {
         // 1. Se for informado o email, verificar se outro usuário já o possui
 
         if (item.email) {
@@ -66,7 +66,7 @@ export class UserService {
             .createQueryBuilder()
             .update(UserEntity)
             .set(item)
-            .where('id = :id', { id: _id })
+            .where('id = :id', { id: id })
             .execute();
 
         if (!result) {
@@ -75,7 +75,7 @@ export class UserService {
         return result;
     }
 
-    async deleteById(_id: string): Promise<DeleteResult> {
-        return this._repository.delete({ id: _id });
+    async deleteById(id: string): Promise<DeleteResult> {
+        return this._repository.delete({ id: id });
     }
 }

@@ -13,7 +13,7 @@ export default class TypeOrmConfig {
             password: configService.password,
             database: configService.name,
             entities: [
-                process.env.NODE_ENV === 'test'
+                process.env.NODE_ENV.trim() === 'test'
                     ? 'src/models/**/*.entity.ts'
                     : 'dist/models/**/*.entity.js',
             ],

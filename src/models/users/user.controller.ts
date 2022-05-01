@@ -29,13 +29,13 @@ export class UserController {
         return this._service.createUser(User);
     }
 
-    @Get('find')
+    @Get('findOne')
     async findOne(
-        @Query('id') _id: string,
+        @Query('id') id: string,
         @Query('email') _email: string,
     ): Promise<User | undefined> {
         if (_email) return this._service.findByEmail(_email);
-        else if (_id) return this._service.findById(_id);
+        else if (id) return this._service.findById(id);
     }
 
     @Get()
