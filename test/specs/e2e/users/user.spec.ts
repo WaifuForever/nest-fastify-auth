@@ -1,13 +1,14 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import { getConnection } from 'typeorm';
-import { createUser } from '../../helpers/user.helper';
+import { createUser } from '../../../helpers/user.helper';
 
 import * as request from 'supertest';
-import { bootstrapTest } from '../../apps/user.app';
-import { USER_1 } from '../../mocks/user.mock';
+import { bootstrapTest } from '../../../apps/user.app';
+import { USER_1 } from '../../../mocks/user.mock';
 
+export let app: NestFastifyApplication;
 describe('UserController (e2e)', () => {
-    let app: NestFastifyApplication;
+    
 
     beforeAll(async () => {
         app = await bootstrapTest();
@@ -27,17 +28,7 @@ describe('UserController (e2e)', () => {
     });
 
     describe('should accept', () => {
-        it('POST /users', async () => {
-            const response = await request(app.getHttpServer())
-                .post('/users')
-                .send(USER_1);
-
-            console.log(response.text);
-            switch (201) {
-                case 201:
-                    break;
-            }
-        });
+       createUser({...USER_1, n: 1}, 'das', 201);
         
     });
 });
