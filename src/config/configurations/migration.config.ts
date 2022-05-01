@@ -1,8 +1,8 @@
-import { DataSourceOptions } from 'typeorm';
+import { ConnectionOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-export const config: DataSourceOptions = {
+const config: ConnectionOptions = {
     type: 'postgres',
     host: process.env.TYPEORM_HOST, // localhost
     port: parseInt(process.env.TYPEORM_PORT), // 5432
@@ -19,5 +19,11 @@ export const config: DataSourceOptions = {
     logger: 'file',
 
     migrations: ['dist/database/migrations/*.js'],
+    cli: {
+        migrationsDir: 'src/database/migrations',
+    },
+
     connectTimeoutMS: 2000,
 };
+
+export = config;

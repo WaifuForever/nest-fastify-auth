@@ -9,4 +9,5 @@ postgres
 
 .prettierrc
 
+yarn-error.log
 ormlogs.log
