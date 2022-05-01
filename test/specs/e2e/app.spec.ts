@@ -22,7 +22,6 @@ describe('AppController (e2e)', () => {
             const response = await request(app.getHttpServer())
                 .get('/')
                 .expect(200);
-            console.log(response)
             expect(response.text).toEqual('Hello World.');
         });
     });

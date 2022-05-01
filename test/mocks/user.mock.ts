@@ -1,15 +1,15 @@
 import { User } from '../../src/models/users/interfaces/user.interface';
-const acc1: User = {
+const USER_1: User = {
     password: 'asdkaXs@3123',
     email: 'email@gmail.com',
 };
-const acc2: User = {
+const USER_2: User = {
     password: 'adasda@Sd3123',
     email: 'email2@email.com',
 };
 
-const acc3_fake: User = {
+const BAD_USER_3: User = {
     password: 'adasdad3123',
     email: 'email2@emacom',
 };
-export { acc1, acc2, acc3_fake };
+export { USER_1, USER_2, BAD_USER_3 };
