@@ -32,9 +32,9 @@ export class UserController {
     @Get('findOne')
     async findOne(
         @Query('id') id: string,
-        @Query('email') _email: string,
+        @Query('email') email: string,
     ): Promise<User | undefined> {
-        if (_email) return this._service.findByEmail(_email);
+        if (email) return this._service.findByEmail(email);
         else if (id) return this._service.findById(id);
     }
 

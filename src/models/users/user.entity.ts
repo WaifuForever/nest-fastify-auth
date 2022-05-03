@@ -36,6 +36,6 @@ export class UserEntity {
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;
 
-    @Column({ default: 0 })
+    @Column({ default: 0, select: false })
     tokenVersion: number;
 }

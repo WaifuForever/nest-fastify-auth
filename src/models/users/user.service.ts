@@ -39,6 +39,7 @@ export class UserService {
         if (!result) {
             throw new NotFoundException('Not found');
         }
+
         return result;
     }
 
@@ -47,18 +48,17 @@ export class UserService {
         if (!result) {
             throw new NotFoundException('Not found');
         }
+
         return result;
     }
 
     async updateById(id: string, item): Promise<User> {
-        // 1. Se for informado o email, verificar se outro usuário já o possui
-
         if (item.email) {
             const User = this._repository.findOne({
                 where: { email: item.email },
             });
             if (User) {
-                throw new BadRequestException('Duplicate email');
+                throw new BadRequestException('Duplicated email');
             }
         }
 
