@@ -52,29 +52,6 @@ export class UserService {
         return result;
     }
 
-    async updateById(id: string, item): Promise<User> {
-        if (item.email) {
-            const User = this._repository.findOne({
-                where: { email: item.email },
-            });
-            if (User) {
-                throw new BadRequestException('Duplicated email');
-            }
-        }
-
-        const result: any = await getConnection()
-            .createQueryBuilder()
-            .update(UserEntity)
-            .set(item)
-            .where('id = :id', { id: id })
-            .execute();
-
-        if (!result) {
-            throw new NotFoundException('Not Found');
-        }
-        return result;
-    }
-
     async deleteById(id: string): Promise<DeleteResult> {
         return this._repository.delete({ id: id });
     }

@@ -49,11 +49,7 @@ export class UserController {
             skipMissingProperties: true,
         }),
     )
-    @Put(':id')
-    async updateById(@Param('id') id: string, @Body() dto): Promise<object> {
-        return this._service.updateById(id, dto);
-    }
-
+  
     @Delete(':id')
     async delete(@Param('id') id: string): Promise<object> {
         return this._service.deleteById(id);
