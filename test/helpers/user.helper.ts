@@ -185,4 +185,63 @@ const findOneUser: Props = (payload, token, statusCode, app) => {
     });
 };
 
-export { createUser, findOneUser };
+const findAllUsers = (payload, documents, token, statusCode, app) => {
+    describe('tries to retrieve all users', () => {
+        it('GET /users', async () => {
+            const response: request.Response = await request(
+                (await app()).getHttpServer(),
+            )
+                .get('/users')
+                .send(payload);
+
+            expect(
+                typeof response.body === 'object' &&
+                    Array.isArray(response.body) &&
+                    response.body !== null,
+            ).toBeTruthy();
+
+            switch (statusCode) {
+                case 200:
+                    let temp = object => {
+                        return { id: expect.any(String), email: object.email };
+                    };
+
+                    documents.sort((a, b) => (a.email > b.email ? 1 : -1));
+                    response.body.sort((a, b) => (a.email > b.email ? 1 : -1));
+
+                    expect(response.statusCode).toBe(200);
+                    expect(response.body).toMatchObject(
+                        documents.map(x => {
+                            return temp(x);
+                        }),
+                    );
+                    break;
+                case 400:
+                    expect(response.statusCode).toBe(400);
+                    expect(response.body).toMatchObject({
+                        message: 'BadRequest',
+                    });
+                    break;
+                case 404:
+                    expect(response.statusCode).toBe(404);
+                    expect(response.body).toMatchObject({
+                        statusCode: 404,
+                        message: 'Not Found',
+                    });
+                    break;
+                case 500:
+                    expect(response.statusCode).toBe(500);
+                    expect(response.body).toMatchObject({
+                        statusCode: 500,
+                        message: 'Internal server error',
+                    });
+                    break;
+                default:
+                    expect(1).toBe(2);
+                    break;
+            }
+        });
+    });
+};
+
+export { createUser, findOneUser, findAllUsers };
