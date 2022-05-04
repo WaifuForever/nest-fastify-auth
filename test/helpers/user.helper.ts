@@ -10,6 +10,13 @@ type Props = (
     statusCode: number,
     app: () => Promise<NestFastifyApplication>,
 ) => void;
+type findAllProps = (
+    payload: any,
+    documents: Array<User>,
+    token: string,
+    statusCode: number,
+    app: () => Promise<NestFastifyApplication>,
+) => void;
 
 const createUser: Props = (payload, token, statusCode, app) => {
     describe('tries to create a user', () => {
@@ -185,7 +192,13 @@ const findOneUser: Props = (payload, token, statusCode, app) => {
     });
 };
 
-const findAllUsers = (payload, documents, token, statusCode, app) => {
+const findAllUsers: findAllProps = (
+    payload,
+    documents,
+    token,
+    statusCode,
+    app,
+) => {
     describe('tries to retrieve all users', () => {
         it('GET /users', async () => {
             const response: request.Response = await request(
@@ -244,4 +257,140 @@ const findAllUsers = (payload, documents, token, statusCode, app) => {
     });
 };
 
-export { createUser, findOneUser, findAllUsers };
+const deleteUser: Props = (
+    payload,
+    token,
+    statusCode,
+    app,
+) => {
+    it('DELETE /users', async () => {
+        const response: request.Response = await request(
+            (await app()).getHttpServer(),
+        )
+            .delete(`/users/${payload.id ? payload.id : ''}`)
+            .send(payload)
+            .set('Authorization', 'Bearer ' + token);
+
+        expect(
+            typeof response.body === 'object' &&
+                !Array.isArray(response.body) &&
+                response.body !== null,
+        ).toBeTruthy();
+
+        switch (statusCode) {
+            case 200:
+                expect(response.status).toEqual(200);
+                expect(response.body).toMatchObject({
+                    message: 'user deleted',
+                });
+                break;
+
+            case 400:
+                expect(response.status).toEqual(400);
+                expect(response.body).toMatchObject({
+                    message: 'bad request',
+                });
+                break;
+            case 401:
+                expect(response.status).toEqual(401);
+                expect(response.body).toMatchObject({
+                    message: 'unauthorized',
+                });
+                break;
+
+            case 404:
+                expect(response.status).toEqual(404);
+                expect(response.body).toMatchObject({
+                    message: 'not found',
+                });
+                break;
+            default:
+                expect(1).toEqual(2);
+                break;
+        }
+    });
+
+    it('GET /users/findOne', async () => {
+        const response: request.Response = await request(
+            (await app()).getHttpServer(),
+        )
+            .get(`/users/findOne?payload.id=${payload.id ? payload.id : ''}`)
+            .send(payload)
+            .set('Authorization', 'Bearer ' + token);
+
+        expect(
+            typeof response.body === 'object' &&
+                !Array.isArray(response.body) &&
+                response.body !== null,
+        ).toBeTruthy();
+        if (payload.id) {
+            switch (statusCode) {
+                case 404:
+                    expect(response.status).toEqual(404);
+                    expect(response.body).toMatchObject({
+                        message: 'not found',
+                    });
+                    break;
+                case 401:
+                    if (true) {
+                        expect(response.status).toEqual(404);
+                        expect(response.body).toMatchObject({
+                            message: 'not found',
+                        });
+                    } else {
+                        expect(response.status).toEqual(400);
+                        expect(response.body).toMatchObject({
+                            message: 'bad request',
+                        });
+                    }
+
+                    break;
+
+                case 400:
+                    expect(response.status).toEqual(400);
+                    expect(response.body).toMatchObject({
+                        message: 'bad request',
+                    });
+                    break;
+
+                case 200:
+                    expect(response.status).toEqual(401);
+                    expect(response.body).toMatchObject({
+                        message: 'unauthorized',
+                    });
+                    break;
+                default:
+                    expect(1).toEqual(2);
+                    break;
+            }
+        } else {
+            switch (statusCode) {
+                case 404:
+                    expect(response.status).toEqual(200);
+                    expect(response.body).toMatchObject({
+                        message: 'user.findOne.success',
+                    });
+                    break;
+
+                case 400:
+                    expect(response.status).toEqual(200);
+                    expect(response.body).toMatchObject({
+                        message: 'user.findOne.success',
+                    });
+                    break;
+
+                case 200:
+                    expect(response.status).toEqual(401);
+                    expect(response.body).toMatchObject({
+                        message: 'unauthorized',
+                    });
+                    break;
+                default:
+                    expect(1).toEqual(2);
+                    break;
+            }
+        }
+    });
+};
+
+export { createUser, findOneUser, findAllUsers, deleteUser };
