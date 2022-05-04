@@ -19,12 +19,10 @@ export class UserEntity {
 
     @BeforeInsert()
     async hashPassword() {
-        console.log(`rounds=${process.env.HASH_SALT}; hashing password...`);
         this.password = await bcrypt.hash(
             this.password,
             Number(process.env.HASH_SALT),
         );
-        console.log('password hashed...');
     }
     @Column({ select: false })
     password: string;

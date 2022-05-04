@@ -3,7 +3,7 @@ import { getConnection } from 'typeorm';
 import { createUser } from '../../../helpers/user.helper';
 
 import { bootstrapTest } from '../../../apps/user.app';
-import { BAD_USER_3, USER_1 } from '../../../mocks/user.mock';
+import { BAD_USER_3, USER_1, USER_2 } from '../../../mocks/user.mock';
 
 let app: NestFastifyApplication;
 const describeif = (condition: boolean) =>
@@ -31,7 +31,7 @@ describe('UserController (e2e)', () => {
     };
 
     describe('should accept', () => {
-        createUser({ ...USER_1, n: 1 }, 'das', 201, appWrap);
+        createUser({ ...USER_2, n: 2 }, 'das', 201, appWrap);
     });
     
     describeif(false)('should reject', () => {
