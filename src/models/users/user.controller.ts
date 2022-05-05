@@ -12,6 +12,7 @@ import {
     UsePipes,
     ValidationPipe,
 } from '@nestjs/common';
+import { CreateUserDto } from '../../authentication/dto/user.dto';
 import { User } from './interfaces/user.interface';
 import { UserService } from './user.service';
 
@@ -25,8 +26,8 @@ export class UserController {
             whitelist: true,
         }),
     )
-    async create(@Body() User): Promise<User> {
-        return this._service.createUser(User);
+    async create(@Body() user: CreateUserDto): Promise<User> {
+        return this._service.createUser(user);
     }
 
     @Get('findOne')
@@ -49,7 +50,6 @@ export class UserController {
             skipMissingProperties: true,
         }),
     )
-  
     @Delete(':id')
     async delete(@Param('id') id: string): Promise<object> {
         return this._service.deleteById(id);
